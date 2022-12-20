@@ -48,6 +48,12 @@ public final class WorldguardChecker extends JavaPlugin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         // プレイヤー
         Player player = event.getPlayer();
+        // 初回プレイヤーは無視
+        if (!player.hasPlayedBefore()) return;
+        // バイパスプレイヤーは無視
+        if (player.hasPermission("worldguardchecker.bypass")) return;
+        // ワールドが違うときのみ
+        if (Objects.equals(player.getWorld().getName(), location.getWorld().getName())) return;
         // プレイヤーが世界中で保護を持っているかチェック
         boolean hasRegion = Bukkit.getWorlds().stream()
                 .map(world -> WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world)))

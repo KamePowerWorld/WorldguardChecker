@@ -5,3 +5,8 @@ api-version: 1.19
 authors: [ Kamesuta ]
 depend:
   - WorldGuard
+
+permissions:
+  worldguardchecker.bypass:
+    description: Bypass WorldguardChecker
+    default: op
